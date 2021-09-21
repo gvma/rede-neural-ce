@@ -28,7 +28,7 @@ def exchange_dna(father, mother, new_population):
   return new_population
 
 def crossover(new_population, population):
-  for i in range(len(population)):
+  for _ in range(len(population)):
     father_index = np.random.randint(0, len(population)-1)
     mother_index = np.random.randint(0, len(population)-1)
     while father_index == mother_index:
@@ -40,7 +40,7 @@ def crossover(new_population, population):
   return new_population
 
 def mutation(population, X):
-  for i in range(POPULATION_SIZE // 8):
+  for _ in range(POPULATION_SIZE // 8):
     index = np.random.randint(0, len(population) - 1)
     population[index] = np.random.uniform(-1, 1, X.shape[1] + 1)
   return population

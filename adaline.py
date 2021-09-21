@@ -2,9 +2,7 @@ import numpy as np
 import pandas as pd
 
 class Adaline(object):
-    def __init__(self, eta = 0.001, epoch = 100):
-      self.eta = eta
-      self.epoch = epoch
+    def __init__(self):
       self.df = pd.read_csv('Dados_Treinamento_Sinal.csv',header=None)
       self.df.head()
 
@@ -17,7 +15,7 @@ class Adaline(object):
       return self.net_input(individual, weight_)
     def predict(self, weight_):
       score = 0
-      for index, data in self.df.iterrows():
+      for _, data in self.df.iterrows():
         df_individual = []
         answer = None
         for i, v in data.items():
