@@ -14,7 +14,10 @@ def get_initial_population(X):
 def score(clf, population):
   scores = []
   for individual in population:
-    scores.append(clf.predict(individual))
+    score = clf.predict(individual)
+    if score == 0:
+      print('Score 0')
+    scores.append(score)
   return scores
 
 def exchange_dna(father, mother, new_population):
@@ -36,17 +39,11 @@ def crossover(new_population, population):
     new_population = exchange_dna(father, mother, new_population)
   return new_population
 
-def mutation(population):
-  for i in range(POPULATION_SIZE):
+def mutation(population, X):
+  for i in range(POPULATION_SIZE // 8):
     index = np.random.randint(0, len(population) - 1)
-    individual = population[index]
-    position1 = np.random.randint(0,3)
-    position2 = position1
-    while position1 == position2:
-      position2 = np.random.randint(0,3)
-    aux = individual[position1]
-    individual[position1] = individual[position2]
-    individual[position2] = aux
+    population[index] = np.random.uniform(-1, 1, X.shape[1] + 1)
+  return population
 
 def selection(population, population_score, new_population, new_population_score):
   merged_population = population + new_population
