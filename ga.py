@@ -24,7 +24,6 @@ def exchange_dna(father, mother, new_population):
   new_population.append(second_child)
   return new_population
 
-# TODO fazer o crossover entre os individuos
 def crossover(new_population, population):
   for i in range(len(population)):
     father_index = np.random.randint(0, len(population)-1)
@@ -37,6 +36,14 @@ def crossover(new_population, population):
     new_population = exchange_dna(father, mother, new_population)
   return new_population
 
-# TODO fazer a mutacao em um individuo
-def mutation():
-  pass
+def mutation(population):
+  for i in range(2):
+    index = np.random.randint(0, len(population) - 1)
+    individual = population[index]
+    position1 = np.random.randint(0,3)
+    position2 = position1
+    while position1 == position2:
+      position2 = np.random.randint(0,3)
+    aux = individual[position1]
+    individual[position1] = individual[position2]
+    individual[position2] = aux

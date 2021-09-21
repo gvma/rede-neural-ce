@@ -12,13 +12,15 @@ initial_population = get_initial_population(clf.X)
 scores = score(clf, initial_population)
 scores.sort(reverse=True)
 population = initial_population
-# print(population)
 
 while True:
   if scores[0] == 35:
     break
   new_population = crossover([], population)
-  # mutation(new_population)
+  mutation(new_population)
+  new_score = score(clf, new_population)
+  if new_score[0] == 35:
+    print('Pesos: ', new_score[0])
+    break
   break
-  # scores = score(clf, population)
   # population = selection(population, new_population)
