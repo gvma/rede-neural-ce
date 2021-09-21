@@ -9,18 +9,18 @@ from adaline import *
 clf = Adaline()
 
 initial_population = get_initial_population(clf.X)
-scores = score(clf, initial_population)
-scores.sort(reverse=True)
 population = initial_population
 
 while True:
+  scores = score(clf, population)
+  scores.sort(reverse=True)
   if scores[0] == 35:
     break
   new_population = crossover([], population)
   mutation(new_population)
-  new_score = score(clf, new_population)
-  if new_score[0] == 35:
-    print('Pesos: ', new_score[0])
+  new_scores = score(clf, new_population)
+  population = selection(population, scores, new_population, new_scores)
+  print(scores)
+  if new_scores[0] == 35:
+    print('Pesos: ', population[0])
     break
-  break
-  # population = selection(population, new_population)

@@ -18,14 +18,14 @@ class Adaline(object):
     def predict(self, weight_):
       score = 0
       for index, data in self.df.iterrows():
-        individual = []
+        df_individual = []
         answer = None
         for i, v in data.items():
           if i != 4:
-            individual.append(v)
+            df_individual.append(v)
           else:
             answer = v
-        prediction = np.where(self.activation_function(individual, weight_) >= 0.0, 1, -1)
+        prediction = np.where(self.activation_function(df_individual, weight_) >= 0.0, 1, -1)
         if prediction == answer:
           score += 1
       return score
